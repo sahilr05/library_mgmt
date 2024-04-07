@@ -40,6 +40,7 @@ def return_book(
     book_id: int,
     member_id: int,
 ):
+    # TODO: add caching here, set timeout for 1 hour incase user tries to return book repeatedly
     validate_book_checkout(
         book_id=book_id, member_id=member_id, circulation_id=circulation_id
     )
@@ -70,6 +71,7 @@ def reserve_book(
 def fulfill_book(
     book_id: int,
 ):
+    # TODO: add caching here
     book_copies = is_book_available(book_id=book_id)
     if not book_copies:
         raise ValidationException("Book is not available to fulfill")
